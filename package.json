@@ -1,0 +1,36 @@
+{
+  "name": "cerbere-nodejs",
+  "version": "0.0.1",
+  "description": "Client nodejs de Cerbère (c) MTES-MCT",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MTES-MCT/cerbere-nodejs.git"
+  },
+  "keywords": [
+    "cas",
+    "nodejs",
+    "sso",
+    "cerbere"
+  ],
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-cerbere": "file:../passport-cerbere"
+  },
+  "devDependencies": {},
+  "author": "Tristan Robert <tristan.robert@developpement-durable.gouv.fr>",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/MTES-MCT/cerbere-nodejs/issues"
+  },
+  "homepage": "https://github.com/MTES-MCT/cerbere-nodejs#readme"
+}
