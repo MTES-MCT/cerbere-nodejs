@@ -5,29 +5,30 @@ var CerbereStrategy = require("passport-cerbere").Strategy;
 
 var cerbereStrategy = new CerbereStrategy(
   {
-    url:
+    casURL:
       "https://authentification.din.developpement-durable.gouv.fr/cas/public",
+    serviceURL: "http://127.0.0.1:3000",
     propertyMap: {
       id: "UTILISATEUR.ID",
-      civilite: "UTILISATEUR.CIVILITE",
-      firstName: "UTILISATEUR.PRENOM",
-      lastName: "UTILISATEUR.NOM",
-      email: "UTILISATEUR.MEL",
-      unite: "UTILISATEUR.unite"
+      name: {
+        civilite: "UTILISATEUR.CIVILITE",
+        givenName: "UTILISATEUR.PRENOM",
+        familyName: "UTILISATEUR.NOM"
+      },
+      emails: [{key: "UTILISATEUR.MEL", type: 'principal'}, {key: "UTILISATEUR.MELPR", type: 'professionnel'}],
+      unite: "UTILISATEUR.UNITE",
+      telephones: [{key: "UTILISATEUR.TEL_FIXE", type: 'fixe'}],
+      adresses: [{key: {town: "UTILISATEUR.ADR_VILLE", street: 'UTILISATEUR.ADR_RUE', streetcode: 'UTILISATEUR.ADR_CODEPOSTAL', country: 'UTILISATEUR.ADR_PAYS_NOM'}, type: 'principale'}, {key: {town: "ENTREPRISE.ADR_VILLE", street: 'ENTREPRISE.ADR_RUE', streetcode: 'ENTREPRISE.ADR_CODEPOSTAL', country: 'ENTREPRISE.ADR_PAYS_NOM'}, type: 'entreprise'}],
+      organizations: [{key: {code: "ENTREPRISE.SIREN", name: 'ENTREPRISE.RAISON_SOCIALE'}, type: 'principale'}]
     }
   },
   // This is the `verify` callback
-  function(profile, done) {
-    User.findOrCreate({ id: profile.id, profile: profile }, function(
+  function(username, profile, done) {
+    User.findOrCreate(username, profile, function(
       err,
       user
     ) {
-      user.firstName = profile.firstName;
-      user.lastName = profile.lastName;
-      user.civilite = profile.civilite;
-      user.unite = profile.unite;
-      user.email = profile.email;
-      user.id = profile.id;
+      user = { id: username, profile: profile };
       done(err, user);
     });
   }
@@ -105,7 +106,7 @@ app.get("/login", function(req, res, next) {
 
 app.get("/logout", function(req, res) {
   var returnURL = "http://127.0.0.1:3000/";
-  cas.logout(req, res, returnURL);
+  cerbereStrategy.logout(req, res, returnURL);
 });
 
 app.get("/profile", require("connect-ensure-login").ensureLoggedIn(), function(

@@ -1,9 +1,31 @@
 <p>
     ID: <%= user.id %><br />
-    Username: <%= user.username %><br />
-    Name: <%= user.displayName %><br />
-    <% if (user.emails) { %>
-    Email: <%= user.emails[0].value %><br />
-    <% } %>
+    Nom: <%= user.name.displayName %><br />
+    Emails: 
+    <ul>
+        <% user.emails.forEach(function(email){ %>
+            <%- include('emails', {email: email}); %>
+        <% }); %>
+    </ul>
+    Téléphones: 
+    <ul>
+        <% user.telephones.forEach(function(telephone){ %>
+            <%- include('telephones', {telephone: telephone}); %>
+        <% }); %>
+    </ul>
+    Unité: <%= user.unite %><br />
+    Adresses: 
+    <ul>
+        <% user.adresses.forEach(function(adress){ %>
+            <%- include('adresses', {adress: adress}); %>
+        <% }); %>
+    </ul>
+    Entreprises: 
+    <ul>
+        <% user.organizations.forEach(function(organization){ %>
+            <%- include('organizations', {organization: organization}); %>
+        <% }); %>
+    </ul>
 </p>
+<a href="/">Accueil</a>
 <a href="/logout">Déconnexion</a>

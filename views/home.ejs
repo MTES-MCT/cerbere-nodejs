@@ -1,5 +1,6 @@
 <% if (!user) { %>
-	<p>Bienvenue dans Cerbere Node.js démo! <a href="/login">Connexion</a>.</p>
+	<p>Bienvenue dans la démo Cerbère Node.js ! <a href="/login">Connexion</a>.</p>
 <% } else { %>
-	<p>Bonjour, <%= user.username %>. Consultez votre <a href="/profile">profil</a>.</p>
+	<p>Bonjour <%= user.name.displayName %>. Consultez votre <a href="/profile">profil</a>.</p>
+	<p><a href="/logout">Déconnexion</a></p>
 <% } %>

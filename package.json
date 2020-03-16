@@ -1,7 +1,7 @@
 {
   "name": "cerbere-nodejs",
   "version": "0.0.1",
-  "description": "Client nodejs de Cerbère (c) MTES-MCT",
+  "description": "Exemple d'intégration dans nodejs de Cerbère (c) MTES-MCT",
   "main": "index.js",
   "scripts": {
     "test": "test"
