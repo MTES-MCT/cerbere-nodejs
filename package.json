@@ -24,7 +24,7 @@
     "express-session": "^1.17.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.1",
-    "passport-cerbere": "file:../passport-cerbere"
+    "passport-cerbere": "^0.1.0"
   },
   "devDependencies": {},
   "author": "Tristan Robert <tristan.robert@developpement-durable.gouv.fr>",
