@@ -4,7 +4,7 @@
   "description": "Exemple d'intégration dans nodejs de Cerbère (c) MTES-MCT",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
